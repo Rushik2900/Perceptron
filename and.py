@@ -1,4 +1,4 @@
-from utils.all_units import save_plot
+from  utils.all_units import save_plot
 from utils.model import Perceptron
 from utils.all_units import prepare_data
 import matplotlib.pyplot as plt
