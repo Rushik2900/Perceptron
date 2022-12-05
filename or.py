@@ -1,4 +1,5 @@
 from  utils.all_units import save_plot
+from  utils.all_units import save_model
 from utils.model import Perceptron
 from utils.all_units import prepare_data
 import matplotlib.pyplot as plt
@@ -9,26 +10,29 @@ from matplotlib.colors import ListedColormap
 
 plt.style.use("fivethirtyeight")
 
-AND= {
+def main(data, ETA, EPOCHS, filename, plotName):
+    
+
+    df=pd.DataFrame(data)
+
+
+    X,y = prepare_data(df)
+
+    model=Perceptron(eta=ETA, epochs=EPOCHS)
+
+    model.fit(X, y)
+
+    _ =model.total_loss()
+
+    save_model(model, filename)
+    save_plot(df, plotName)
+
+if __name__=='__main__':
+    OR= {
     "x1":[0,0,1,1],
     "x2":[0,1,0,1],
     "y" :[0,1,1,1]
-}
-
-df=pd.DataFrame(AND)
-
-
-X,y = prepare_data(df)
-
-ETA = 0.3
-
-EPOCHS = 10
-
-model=Perceptron(eta=ETA, epochs=EPOCHS)
-
-model.fit(X, y)
-
-_ =model.total_loss()
-
-save_model(model, filename="or.model")
-save_plot(df, "or.png")
+    }
+    ETA = 0.3
+    EPOCHS = 10
+    main(OR, ETA, EPOCHS, filename="or.model", plotName="or.png")
