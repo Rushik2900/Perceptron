@@ -48,7 +48,7 @@ def save_plot(df,file_name, model):
         
         plt.plot()
     
-    Z, y = prepare_data(df)
+    X, y = prepare_data(df)
     
     _create_base_plot(df)
     _plot_decision_regions(X, y, model)

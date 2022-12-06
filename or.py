@@ -25,7 +25,7 @@ def main(data, ETA, EPOCHS, filename, plotName):
     _ =model.total_loss()
 
     save_model(model, filename)
-    save_plot(df, plotName)
+    save_plot(df, plotName, model)
 
 if __name__=='__main__':
     OR= {
