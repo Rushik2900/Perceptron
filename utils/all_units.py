@@ -7,12 +7,26 @@ import os
 
 
 def prepare_data(df):
+    """ It is used to seperate dependent and independent variables
+
+    Args:
+        df (pd.DataFrame): It is pandas DataFrame 
+
+    Returns:
+        tuple: It returns tuple of dependent and independent variables
+    """
     X=df.drop("y", axis=1)
     y=df["y"]
     return X,y
 
 
 def save_model(model, filename):
+    """ This saves the trained model to filename
+
+    Args:
+        model (python object): trained model to
+        filename (str): path to save trained model
+    """
     model_dir = "model"
     os.makedirs(model_dir, exist_ok=True) # only create if model_dir doesn't exists
     filepath = os.path.join(model_dir, filename)
@@ -20,6 +34,11 @@ def save_model(model, filename):
 
 
 def save_plot(df,file_name, model):
+    """
+    :param df: It is a DataFrame
+    :param file_name: It is a path to save file
+    :param model: trained model
+    """
     def _create_base_plot(df):
         df.plot(kind="scatter", x="x1", y='x2', c='y', s=100, cmap="winter")
         plt.axhline(y=0, color="black", linestyle="--", linewidth=1)
