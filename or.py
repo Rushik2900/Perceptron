@@ -7,8 +7,15 @@ import numpy as np
 import pandas as pd
 import joblib 
 from matplotlib.colors import ListedColormap
-
+import logging
+import os
 plt.style.use("fivethirtyeight")
+
+# logging_str = "[%(asctime)s: %(levelname)s: %(module)s] %(message)s"
+logging_str = "[%(asctime)s: %(filename)s:%(funcName)s:%(lineno)d] %(message)s"
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+logging.basicConfig(filename=os.path.join(log_dir,"or.logs"), level=logging.INFO, format=logging_str, filemode="a")
 
 def main(data, ETA, EPOCHS, filename, plotName):
     
@@ -35,4 +42,9 @@ if __name__=='__main__':
     }
     ETA = 0.3
     EPOCHS = 10
-    main(OR, ETA, EPOCHS, filename="or.model", plotName="or.png")
+    try:
+        logging.info("\n>>>>> Starting training >>>>>>>>")
+        main(OR, ETA, EPOCHS, filename="or.model", plotName="or.png")
+        logging.info(">>>>> training done successfully <<<<<<")
+    except Exception as e:
+        logging.exception(e)
