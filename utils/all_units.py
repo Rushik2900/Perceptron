@@ -62,7 +62,7 @@ def save_plot(df,file_name, model):
         x2_min, x2_max = X[:,1].min() -1, X[:,1].max() +1
         
         xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution),
-                              np.arange(x1_min, x1_max, resolution))
+                              np.arange(x2_min, x2_max, resolution))
         logging.info(xx1)
         logging.info(xx1.ravel())
         
